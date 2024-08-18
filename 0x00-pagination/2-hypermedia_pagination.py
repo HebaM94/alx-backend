@@ -59,7 +59,7 @@ class Server:
             - data: the dataset page
             - next_page: number of the next page, None if no next page
             - prev_page: number of the previous page, None if no previous page
-            - total_pages: the total number of pages in the dataset as an integer
+            - total_pages: the total number of pages in the dataset
         """
         dataset = self.dataset()
         total_pages = math.ceil(len(dataset) / page_size)

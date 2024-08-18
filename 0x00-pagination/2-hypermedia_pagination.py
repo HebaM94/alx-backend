@@ -68,10 +68,10 @@ class Server:
             next_page = page + 1
         if page > 1:
             prev_page = page - 1
-        page_data = self.get_page(page, page_size)
-        response = {'page_size': len(page_data),
+        dataset_page = self.get_page(page, page_size)
+        response = {'page_size': len(dataset_page),
                     'page': page,
-                    'data': page_data,
+                    'data': dataset_page,
                     'next_page': next_page,
                     'prev_page': prev_page,
                     'total_pages': total_pages}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ Pagination project"""
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 import csv
 import math
 
@@ -47,3 +47,32 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
         start, end = index_range(page, page_size)
         return self.dataset()[start:end]
+    
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
+        """ Gets page data plus info to next and prev pages
+        - Args:
+            - page (int): page to look for information
+            - page_size (int): size of each page
+        - Return: a dictionary containing the following key-value pairs:
+            - page_size: the length of the returned dataset page
+            - page: the current page number
+            - data: the dataset page
+            - next_page: number of the next page, None if no next page
+            - prev_page: number of the previous page, None if no previous page
+            - total_pages: the total number of pages in the dataset as an integer
+        """
+        dataset = self.dataset()
+        total_pages = math.ceil(len(dataset) / page_size)
+        prev_page, next_page = None, None
+        if page < total_pages:
+            next_page = page + 1
+        if page > 1:
+            prev_page = page - 1
+        page_data = self.get_page(page, page_size)
+        response = {'page_size': len(page_data),
+                    'page': page,
+                    'data': page_data,
+                    'next_page': next_page,
+                    'prev_page': prev_page,
+                    'total_pages': total_pages}
+        return response

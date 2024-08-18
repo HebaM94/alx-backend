@@ -47,7 +47,7 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
         start, end = index_range(page, page_size)
         return self.dataset()[start:end]
-    
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """ Gets page data plus info to next and prev pages
         - Args:

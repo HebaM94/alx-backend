@@ -6,7 +6,7 @@ Caching Module
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class BasicCache():
+class BasicCache(BaseCaching):
     """ BasicCache defines:
       - Caching system
     """

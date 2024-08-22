@@ -27,7 +27,8 @@ class LFUCache(BaseCaching):
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 items = list(self.counter.values())
                 min_item = min(items)
-                least_frequent = [k for k, v in self.counter.items() if v == min_item]
+                least_frequent = [k for k, v in self.counter.items()
+                                  if v == min_item]
                 least_item = list(iter(least_frequent)).pop(0)
                 print("DISCARD: {}".format(least_item))
                 del self.cache_data[least_item]

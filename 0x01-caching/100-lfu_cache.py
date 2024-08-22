@@ -34,11 +34,12 @@ class LFUCache(BaseCaching):
                 del self.counter[least_item]
         self.cache_data[key] = item
         self.counter[key] = 1
-        
+
     def get(self, key):
         """ Get an item by key """
         if key is None or key not in self.cache_data:
             return None
         item = self.cache_data.pop(key)
         self.cache_data[key] = item
+        self.counter[key] += 1
         return self.cache_data[key]

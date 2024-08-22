@@ -22,7 +22,7 @@ class LFUCache(BaseCaching):
             return
         if key in self.cache_data:
             self.counter[key] += 1
-            self.cache_data[key] = item
+            #self.cache_data[key] = item
         else:
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 items = list(self.counter.values())
